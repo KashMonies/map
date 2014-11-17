@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
-      html, body, #map-canvas {
+      html, body, #map{
         height: 100%;
         margin: 0px;
         padding: 0px
@@ -13,41 +13,48 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <script src="draw.js"></script>
     <script>
 
     $(function() {
       
-      $.getJSON("http://cooper-union-search-proxy.herokuapp.com/instagram/search/missing", function(response) {
+      $.getJSON("http://cooper-union-instagram-proxy.herokuapp.com/search/tag/missing", function(response) {
 
-        console.log(response);
+        for (i in response){
+          var post = response[i];
 
-        var map;
-      
-        //var location
-        // if location != 0
-        // find location= 0
-        //
-        //make location new long/lat
+          var location = post.location;
 
-        var mapOptions = {
-          zoom: 7,
-          center: new google.maps.LatLng(newlat)
-        };
+          if (location != null)  {
+            console.log(post);
+            var lat = location.latitude;
+            var longi = location.longitude;
+
+            var mapOptions= {
+              zoom: 10,
+              center: new google.maps.LatLng(lat,longi)
+
+            
+            }
+            console.log(location);
 
 
-        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+           
+            draw('map',mapOptions);
 
-        var myLatlng = new google.maps.LatLng(25.781902,-80.13045);
 
-        //cooper union
+
+            
+          } 
+
+        }
          
-       });
+     });
 
-      // google.maps.event.addDomListener(window, 'load', initialize);
     });
     </script>
   </head>
   <body>
-    <div id="map-canvas"></div>
+    <div id="map"></div>
   </body>
 </html>
