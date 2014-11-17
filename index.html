@@ -33,18 +33,26 @@
             var mapOptions= {
               zoom: 10,
               center: new google.maps.LatLng(lat,longi)
+            }
+            
+               var postion=[
+            {'title':'nowhere'
+            'map':new google.maps.LatLng(lat,longi)
+            }
+
+            ]
+            
+            
 
             
-            }
             console.log(location);
-
+             
+            
 
            
-            draw('map',mapOptions);
+            draw('map',mapOptions,postion);
 
 
-
-            
           } 
 
         }
